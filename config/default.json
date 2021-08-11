@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb+srv://prithwichanda:prithwichanda@developersconnect.izfwb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  "jwtSecret": "mysecrettoken"
+  "jwtSecret": "mysecrettoken",
+  "githubClientID": "479a943c9b3534b0b02f",
+  "githubSecret": "c1acb469839cc588af948ec6c247ea677bbe6af2"
 }
