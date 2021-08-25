@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
@@ -38,12 +38,7 @@ const Dashboard = ({
           </div>
         </Fragment>
       ) : (
-        <Fragment>
-          <p>You have not create a profile, please add some info</p>
-          <Link to="/create-profile" className="btn btn-primary my-1">
-            Create Profile
-          </Link>
-        </Fragment>
+        <Redirect to="/create-profile" />
       )}
     </Fragment>
   );
