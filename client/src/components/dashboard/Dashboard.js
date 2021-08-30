@@ -1,11 +1,12 @@
 import React, { Fragment, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
 import DashboardActions from "./DashboardActions";
 import Experience from "./Experience";
+import CreateProfile from "../profile-forms/CreateProfile";
 import Education from "./Education";
 
 const Dashboard = ({
@@ -22,12 +23,12 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className="large text-primary">Dashboard</h1>
-      <p className="lead">
-        <i className="fas fa-user"></i> Welcome {user && user.name}
-      </p>
       {profile !== null ? (
         <Fragment>
+          <h1 className="large text-primary">Dashboard</h1>
+          <p className="lead">
+            <i className="fas fa-user"></i> Welcome {user && user.name}
+          </p>
           <DashboardActions />
           <Experience experience={profile.experience} />
           <Education education={profile.education} />
@@ -38,7 +39,9 @@ const Dashboard = ({
           </div>
         </Fragment>
       ) : (
-        <Redirect to="/create-profile" />
+        <Fragment>
+          <CreateProfile />
+        </Fragment>
       )}
     </Fragment>
   );
