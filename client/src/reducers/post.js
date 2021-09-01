@@ -2,8 +2,11 @@ import { updateLocale } from "moment";
 import {
   ADD_POST,
   GET_POSTS,
+  GET_POST,
   POST_ERROR,
   UPDATE_LIKES,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
   DELETE_POSTS,
 } from "../actions/types";
 
@@ -30,6 +33,12 @@ export default function (state = initialState, action) {
         posts: payload,
         loading: false,
       };
+    case GET_POST:
+      return {
+        ...state,
+        post: payload,
+        loading: false,
+      };
     case DELETE_POSTS:
       return {
         ...state,
@@ -48,6 +57,23 @@ export default function (state = initialState, action) {
         posts: state.posts.map((post) =>
           post._id === payload.id ? { ...post, likes: payload.likes } : post
         ),
+        loading: false,
+      };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        post: { ...state.post, comments: payload },
+        loading: false,
+      };
+    case REMOVE_COMMENT:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: state.post.comments.filter(
+            (comment) => comment._id !== payload
+          ),
+        },
         loading: false,
       };
     default:
